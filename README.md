@@ -1,4 +1,3 @@
-# TFINAL_Grupo03
 # TFINAL — Sistema de Gestión de Reservas de Hoteles (Frontend)
 
 Aplicación web frontend desarrollada en **React + Vite** que consume los
@@ -31,3 +30,19 @@ definidos en el SRS (T02.01) y expuestos por la API (T02.03):
 Arquitectura cliente-servidor: el frontend (SPA en React) se comunica por
 HTTP/JSON con la API REST (FastAPI, puerto 8000), que sigue la estructura
 Modelo → Repositorio → Servicio → Controlador documentada en el DDS.
+
+src/
+├── services/ # llamadas HTTP a la API (un archivo por módulo)
+├── components/ # componentes reutilizables (tablas, formularios)
+├── pages/ # una vista por módulo funcional
+└── App.jsx # enrutamiento y layout general
+
+## Tareas por usuario
+
+Las tareas de seguimiento están definidas como **Issues** de este
+repositorio, asignadas a cada integrante según su módulo.
+
+## Ejecución
+
+1. Backend: `py -m uvicorn app.main:app --reload --port 8000` (repo T02.03)
+2. Frontend: `cd frontend && npm install && npm run dev` → http://localhost:5173
