@@ -33,8 +33,22 @@ export default function DisponibilidadPage() {
 
   const handleBuscar = async (e) => {
     e.preventDefault();
-    setLoading(true);
     setError(null);
+
+    if (!filtros.fechaInicio || !filtros.fechaFin) {
+      setError("Ambas fechas son obligatorias.");
+      return;
+    }
+
+    const inicio = new Date(filtros.fechaInicio);
+    const fin = new Date(filtros.fechaFin);
+
+    if (fin <= inicio) {
+      setError("La fecha de salida debe ser posterior a la fecha de entrada.");
+      return;
+    }
+
+    setLoading(true);
     try {
       const data = await consultarDisponibilidad(filtros);
       setResultados(data);
