@@ -59,6 +59,20 @@ export default function UsuariosPage() {
 
   const handleCrear = async (e) => {
     e.preventDefault();
+    setError(null);
+    if (!form.nombre || form.nombre.trim() === "") {
+      setError("El nombre completo es requerido y no puede estar vacío.");
+      return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(form.email)) {
+      setError("El correo electrónico no tiene un formato válido.");
+      return;
+    }
+    if (!form.password || form.password.length < 6) {
+      setError("La contraseña debe tener al menos 6 caracteres.");
+      return;
+    }
     try {
       await crearUsuario(form);
       setForm({ nombre: "", email: "", password: "", rol: "recepcionista" });
