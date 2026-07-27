@@ -3,6 +3,7 @@ import UsuariosPage from "./pages/UsuariosPage";
 import ClientesPage from "./pages/ClientesPage";
 import HabitacionesPage from "./pages/HabitacionesPage";
 import DisponibilidadPage from "./pages/DisponibilidadPage";
+import FacturasPage from "./pages/FacturasPage";
 import "./App.css";
 
 const HomeIcon = () => (
@@ -167,6 +168,7 @@ function NavLinks() {
         <Link to="/clientes" className={cls("/clientes")} data-module={module("/clientes")}><ClientsIcon /><span>Clientes</span></Link>
         <Link to="/habitaciones" className={cls("/habitaciones")} data-module={module("/habitaciones")}><RoomsIcon /><span>Habitaciones</span></Link>
         <Link to="/disponibilidad" className={cls("/disponibilidad")} data-module={module("/disponibilidad")}><CalendarIcon /><span>Disponibilidad</span></Link>
+        <Link to="/facturas" className={cls("/facturas")} data-module="facturas"><HomeIcon /><span>Facturación</span></Link>
       </nav>
     </>
   );
@@ -188,7 +190,7 @@ function App() {
           </div>
 
           <NavLinks />
-
+          
           <div className="sidebar-footer">
             <div className="avatar">AD</div>
             <div className="user-info">
@@ -213,6 +215,7 @@ function App() {
               <Route path="/clientes" element={<ClientesPage />} />
               <Route path="/habitaciones" element={<HabitacionesPage />} />
               <Route path="/disponibilidad" element={<DisponibilidadPage />} />
+              <Route path="/facturas" element={<FacturasPage />} />
             </Routes>
           </main>
         </div>
