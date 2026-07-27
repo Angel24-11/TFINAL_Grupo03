@@ -7,6 +7,7 @@ import FacturasPage from "./pages/FacturasPage";
 import PagosPage from "./pages/PagosPage";
 import MovimientosPage from "./pages/MovimientosPage";
 import ReportesPage from "./pages/ReportesPage";
+import ReservasPage from "./pages/ReservasPage";
 import "./App.css";
 
 const HomeIcon = () => (
@@ -175,6 +176,7 @@ function NavLinks() {
         <Link to="/pagos" className={cls("/pagos")} data-module="pagos"><HomeIcon /><span>Pagos</span></Link>
         <Link to="/movimientos" className={cls("/movimientos")} data-module="movimientos"><HomeIcon /><span>Contabilidad</span></Link>
         <Link to="/reportes" className={cls("/reportes")} data-module="reportes"><HomeIcon /><span>Reportes</span></Link>
+        <Link to="/reservas" className={cls("/reservas")} data-module="reservas"><HomeIcon /><span>Reservas</span></Link>
       </nav>
     </>
   );
@@ -224,6 +226,7 @@ function App() {
               <Route path="/pagos" element={<PagosPage />} />
               <Route path="/movimientos" element={<MovimientosPage />} />
               <Route path="/reportes" element={<ReportesPage />} />
+              <Route path="/reservas" element={<ReservasPage />} />
             </Routes>
           </main>
         </div>
