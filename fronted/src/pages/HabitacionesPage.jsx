@@ -58,8 +58,18 @@ export default function HabitacionesPage() {
 
   const handleRegistrar = async (e) => {
     e.preventDefault();
+    setError(null);
+    if (!form.numero || form.numero.trim() === "") {
+      setError("El número de habitación es requerido.");
+      return;
+    }
+    const precioNum = Number(form.precio);
+    if (isNaN(precioNum) || precioNum <= 0) {
+      setError("El precio por noche debe ser un número mayor a cero.");
+      return;
+    }
     try {
-      await registrarHabitacion({ ...form, precio: Number(form.precio) });
+      await registrarHabitacion({ ...form, precio: precioNum });
       setForm({ numero: "", tipo: "simple", precio: "", estado: "disponible" });
       cargarHabitaciones();
     } catch (err) {
