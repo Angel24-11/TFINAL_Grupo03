@@ -66,6 +66,24 @@ export default function ClientesPage() {
 
   const handleRegistrar = async (e) => {
     e.preventDefault();
+    setError(null);
+    if (!form.nombre || form.nombre.trim() === "") {
+      setError("El nombre del huésped es requerido.");
+      return;
+    }
+    if (!/^\d+$/.test(form.cedula)) {
+      setError("La cédula o pasaporte debe contener únicamente números.");
+      return;
+    }
+    if (form.cedula.length < 5) {
+      setError("La cédula o pasaporte debe tener al menos 5 dígitos.");
+      return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(form.email)) {
+      setError("El formato del correo electrónico no es válido.");
+      return;
+    }
     try {
       await registrarCliente(form);
       setForm({ nombre: "", cedula: "", email: "", telefono: "" });
@@ -198,6 +216,11 @@ export default function ClientesPage() {
               <div className="subsection-body">
                 {cargandoReservas ? (
                   <LoadingSpinner message="Cargando reservas..." />
+                ) : reservas.length === 0 ? (
+                  <div className="empty-state-reservas" style={{ padding: "2rem", textAlign: "center", border: "1px dashed #ccc", borderRadius: "8px", margin: "1rem 0" }}>
+                    <p style={{ fontWeight: "600", color: "#666", margin: 0 }}>Sin historial de reservas</p>
+                    <p style={{ fontSize: "0.85rem", color: "#888", marginTop: "0.25rem", marginBottom: 0 }}>Este huésped aún no ha realizado reservas en el hotel.</p>
+                  </div>
                 ) : (
                   <DataTable
                     columns={RESERVA_COLUMNS}
